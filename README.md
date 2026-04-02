@@ -18,9 +18,9 @@ and then follow this instruction
  python3 venv venv
  source venv/bin/activate
 ```
-2. install flask
+2. install lib
  ```
-pip2 install flask
+pip2 install flask markdown
   ```
 3. run main.py on your server(make sure to use termux or docker or whatever tab system but do not run on main terminal bc it'll hard to debug)
 
