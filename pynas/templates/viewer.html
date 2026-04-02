@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Video Viewer</title>
+    <style>
+        body { background: #1a1a1a; color: #fff; font-family: monospace; text-align: center; padding: 20px; }
+        .container { max-width: 1000px; margin: auto; }
+        video { width: 100%; border: 1px solid #444; }
+        .back-link { display: inline-block; margin-top: 20px; color: #fff; border: 1px solid #fff; padding: 10px; text-decoration: none; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>File: {{ filepath.split('/')[-1] }}</h2>
+        <video controls autoplay>
+            <source src="/raw/{{ filepath }}">
+            Browser not supported.
+        </video>
+        <br>
+        <a href="javascript:history.back()" class="back-link">RETURN TO BROWSER</a>
+    </div>
+</body>
+</html>
