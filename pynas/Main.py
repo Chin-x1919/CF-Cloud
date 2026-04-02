@@ -4,12 +4,10 @@ import markdown
 import shutil
 
 app = Flask(__name__)
-# ใช้ Path แบบ Absolute เพื่อป้องกันความสับสน
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_FOLDER = os.path.join(BASE_DIR, 'uploads')
 app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
-# นามสกุลไฟล์วิดีโอที่รองรับ
 VIDEO_EXTENSIONS = {'.mp4', '.webm', '.ogg'}
 
 def get_readme_content(full_path):
@@ -23,7 +21,7 @@ def get_readme_content(full_path):
 @app.route('/browse/')
 @app.route('/browse/<path:subpath>')
 def index(subpath=""):
-    # ป้องกันการเจาะระบบด้วย ../
+    
     safe_subpath = subpath.strip('/')
     full_path = os.path.join(app.config['UPLOAD_FOLDER'], safe_subpath)
     
@@ -75,12 +73,10 @@ def make_directory(subpath):
 
 @app.route('/stream/<path:filepath>')
 def stream_video(filepath):
-    # สำหรับเล่น Video ใน Browser
     return render_template('viewer.html', filepath=filepath)
 
 @app.route('/raw/<path:filepath>')
 def serve_file(filepath):
-    # ส่งไฟล์ดิบ (สำหรับ Download หรือ Stream)
     return send_from_directory(app.config['UPLOAD_FOLDER'], filepath)
 
 @app.route('/delete/<path:filepath>')
@@ -89,7 +85,7 @@ def delete_item(filepath):
     parent_dir = os.path.dirname(filepath)
     if os.path.exists(full_path):
         if os.path.isdir(full_path):
-            shutil.rmtree(full_path) # ลบทั้งโฟลเดอร์ที่มีไฟล์อยู่
+            shutil.rmtree(full_path)
         else:
             os.remove(full_path)
     return redirect(url_for('index', subpath=parent_dir))
