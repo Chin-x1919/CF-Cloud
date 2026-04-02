@@ -20,7 +20,7 @@ and then follow this instruction
 ```
 2. install lib
  ```
-pip2 install flask markdown
+pip3 install flask markdown
   ```
 3. run main.py on your server(make sure to use termux or docker or whatever tab system but do not run on main terminal bc it'll hard to debug)
 
