@@ -1,4 +1,0 @@
-flask
-llama-cpp-python
-openai-whisper
-edge-tts
